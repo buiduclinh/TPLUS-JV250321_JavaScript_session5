@@ -200,7 +200,7 @@
 // 6. Thoát
 
 //   Lựa chọn của bạn: `);
-//   if (Number.isNaN(n) || n === "") {
+//   if (Number.isNaN(n) || n === "" || !Number.isInteger(n)) {
 //     console.log("Invalid Input");
 //   } else {
 //     switch (n) {
@@ -283,13 +283,13 @@ while (loop) {
  	============================================
 
   	Lựa chọn của bạn:  `);
-  if (Number.isNaN(menu) || menu === "") {
+  if (Number.isNaN(menu) || menu === "" || !Number.isInteger(menu)) {
     console.log("Invalid Input");
   } else {
     switch (menu) {
       case 1:
         let n = +prompt(`Nhập giá trị vào mảng `);
-        if (Number.isNaN(n) || n === "") {
+        if (Number.isNaN(n) || n === "" || !Number.isInteger(n)) {
           console.log("Invalid Input");
         } else {
           numbers.push(n);
@@ -346,7 +346,7 @@ while (loop) {
       case 6:
         let count = 1;
         let input = +prompt(`Nhập số bất kỳ `);
-        if (Number.isNaN(input) || input === "") {
+        if (Number.isNaN(input) || input === "" || !Number.isInteger(input)) {
           console.log("Invalid Input");
         }
         for (i = 0; i <= numbers.length - 1; i = i + 1) {
@@ -362,8 +362,10 @@ while (loop) {
         if (
           Number.isNaN(newinput) ||
           newinput === "" ||
+          !Number.isInteger(newinput) ||
           Number.isNaN(newinputps) ||
-          newinputps === ""
+          newinputps === "" ||
+          !Number.isInteger(newinputps)
         ) {
           console.log("Invalid Input");
         }
