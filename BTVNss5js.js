@@ -238,59 +238,22 @@
 //B10
 // ================== MENU ===================
 
-let numbers = [];
-let menu = +prompt(` `);
-if (Number.isNaN(menu) || menu === "") {
-}
-
 // Nhập số phần tử cần nhập và giá trị các phần tử
 //input mảng và các phần tử
-let n = +prompt(`Nhập giá trị vào mảng `);
 
 // In ra giá trị các phần tử đang quản lý
 //hiển thị mảng sau khi đã nhập
-console.log(numbers);
 
 // In ra giá trị các phần tử chẵn và tính tổng
 //hiển thị ra các giá trị chẵn trong mảng
 //rồi tính tổng của các giá trị đó
-let sumChan = 0;
-for (let i = 0; i <= n; i = i + 1) {
-  if (n % 2 === 0) {
-    sumChan = sumChan + i;
-  }
-}
-console.log(sumChan);
 
 // In ra giá trị lớn nhất và nhỏ nhất trong mảng
 //sử dụng 1 vòng lặp for để tìm ra giá trị lớn nhất và nhỏ nhất
-let max = numbers[0];
-let min = numbers[0];
-for (let m = 0; m <= n; m = m + 1) {
-  if (m > max) {
-    max = numbers[m];
-  }
-  if (m < min) {
-    min = numbers[m];
-  }
-}
-console.log(`Giá trị lớn nhất trong dãy là ${max} `);
-console.log(`Giá trị lớn nhất trong dãy là ${min} `);
 
 // In ra các phần tử là số nguyên tố trong mảng và tính tổng
 //xét điều kiện là số nguyên tố
 //in ra các giá trị đó và tính tổng
-let isPrime = true;
-let sumPrime = 0;
-for (i = 0; i <= Math.sqrt(n); i = i + 1) {
-  if (n % i === 0) {
-    isPrime = false;
-    console.log(`${n} không phải là số nguyên tố`);
-  }else{
-    console.log(`${n} là số nguyên tố`);
-    sumPrime = sumPrime + n;
-  }
-}console.log(sumPrime);
 
 // Nhập vào một số và thống kê trong mảng có bao nhiêu phần tử đó
 //input phần tử bất kỳ
@@ -304,3 +267,114 @@ for (i = 0; i <= Math.sqrt(n); i = i + 1) {
 //  	============================================
 
 //   	Lựa chọn của bạn:
+let loop = true;
+let numbers = [];
+while (loop) {
+  let menu = +prompt(`================== MENU ===================
+
+1. Nhập số phần tử cần nhập và giá trị các phần tử
+2. In ra giá trị các phần tử đang quản lý
+3. In ra giá trị các phần tử chẵn và tính tổng
+4. In ra giá trị lớn nhất và nhỏ nhất trong mảng
+5. In ra các phần tử là số nguyên tố trong mảng và tính tổng
+6. Nhập vào một số và thống kê trong mảng có bao nhiêu phần tử đó
+7. Thêm một phần từ vào vị trí chỉ định
+8. Thoát
+ 	============================================
+
+  	Lựa chọn của bạn:  `);
+  if (Number.isNaN(menu) || menu === "") {
+    console.log("Invalid Input");
+  } else {
+    switch (menu) {
+      case 1:
+        let n = +prompt(`Nhập giá trị vào mảng `);
+        if (Number.isNaN(n) || n === "") {
+          console.log("Invalid Input");
+        } else {
+          numbers.push(n);
+        }
+        break;
+      case 2:
+        console.log(numbers);
+        break;
+      case 3:
+        let sumChan = 0;
+        for (let i = 0; i <= numbers.length - 1; i = i + 1) {
+          if (numbers[i] % 2 === 0) {
+            sumChan = sumChan + numbers[i];
+            console.log(numbers[i]);
+          }
+        }
+        console.log(sumChan);
+        break;
+      case 4:
+        let max = numbers[0];
+        let min = numbers[0];
+        for (let m = 0; m <= numbers.length - 1; m = m + 1) {
+          if (numbers[m] > max) {
+            max = numbers[m];
+          }
+          if (numbers[m] < min) {
+            min = numbers[m];
+          }
+        }
+        console.log(`Giá trị lớn nhất trong dãy là ${max} `);
+        console.log(`Giá trị lớn nhất trong dãy là ${min} `);
+        break;
+      case 5:
+        let sumPrime = 0;
+        for (m = 0; m <= numbers.length - 1; m = m + 1) {
+          let isPrime = true;
+          let primeNumber = numbers[m];
+          if (primeNumber < 2) {
+            isPrime = false;
+          } else {
+            for (i = 2; i <= Math.sqrt(primeNumber); i = i + 1) {
+              if (primeNumber % i === 0) {
+                isPrime = false;
+              }
+            }
+          }
+          if (isPrime) {
+            sumPrime = sumPrime + primeNumber;
+            console.log(primeNumber);
+          }
+        }
+        console.log(sumPrime);
+        break;
+      case 6:
+        let count = 1;
+        let input = +prompt(`Nhập số bất kỳ `);
+        if (Number.isNaN(input) || input === "") {
+          console.log("Invalid Input");
+        }
+        for (i = 0; i <= numbers.length - 1; i = i + 1) {
+          if (input === i) {
+            count = count + 1;
+          }
+        }
+        console.log(`${input} : ${count}`);
+        break;
+      case 7:
+        let newinput = +prompt(`nhập phần tử mới `);
+        let newinputps = +prompt(`chọn vị trí cần input `);
+        if (
+          Number.isNaN(newinput) ||
+          newinput === "" ||
+          Number.isNaN(newinputps) ||
+          newinputps === ""
+        ) {
+          console.log("Invalid Input");
+        }
+        numbers.splice(newinputps - 1, 0, newinput);
+        break;
+      case 8:
+        loop = false;
+        break;
+
+      default:
+        break;
+    }
+  }
+}
